@@ -157,80 +157,90 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
                 <div
                   style={{
                     flex: 1,
-                    display: "grid",
-                    gridTemplateColumns:
-                      "repeat(auto-fill, minmax(200px, 1fr))",
-                    gap: "12px",
-                    alignContent: index === 1 ? "start" : "center", // Conditional alignment
-                    alignItems: index === 1 ? "stretch" : "center", // Conditional alignment
-                    maxHeight: "100%",
-                    overflow: "auto",
+                    display: "flex",
+                    alignItems: index === 1 ? "flex-start" : "center", // Center container except for Shop
+                    height: "100%",
                   }}
                 >
-                  {menu.items.map((section, sectionIndex) => (
-                    <div
-                      key={sectionIndex}
-                      style={{
-                        padding: "16px",
-                        backgroundColor: "rgba(255, 255, 255, 0.5)",
-                        borderRadius: "8px",
-                        transition: "all 0.2s ease",
-                        minHeight: "200px",
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <h3
+                  {/* Grid container for menu items */}
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "grid",
+                      gridTemplateColumns:
+                        "repeat(auto-fill, minmax(200px, 1fr))",
+                      gap: "12px",
+                      alignItems: "stretch",
+                      paddingTop: "12px", // Add padding here
+                      paddingBottom: "12px", // Add padding for symmetry
+                    }}
+                  >
+                    {menu.items.map((section, sectionIndex) => (
+                      <div
+                        key={sectionIndex}
                         style={{
-                          fontSize: "14px",
-                          fontWeight: "600",
-                          color: "#111827",
-                          marginBottom: "16px",
-                          textTransform: "uppercase",
-                          letterSpacing: "0.05em",
+                          padding: "16px",
+                          backgroundColor: "rgba(255, 255, 255, 0.5)",
+                          borderRadius: "8px",
+                          transition: "all 0.2s ease",
+                          height: "100%", // Force same height
+                          display: "flex",
+                          flexDirection: "column",
                         }}
                       >
-                        {section.name}
-                      </h3>
-                      {section.subItems && (
-                        <div
+                        <h3
                           style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "12px",
-                            flex: 1,
+                            fontSize: "14px",
+                            fontWeight: "600",
+                            color: "#111827",
+                            marginBottom: "16px",
+                            textTransform: "uppercase",
+                            letterSpacing: "0.05em",
                           }}
                         >
-                          {section.subItems.map((item, itemIndex) => (
-                            <a
-                              key={itemIndex}
-                              href={item.href}
-                              style={{
-                                color: "#6b7280",
-                                textDecoration: "none",
-                                fontSize: "14px",
-                                transition: "all 0.2s ease",
-                                padding: "8px 12px",
-                                borderRadius: "4px",
-                                backgroundColor: "transparent",
-                              }}
-                              onMouseEnter={(e) => {
-                                e.target.style.color = "#111827";
-                                e.target.style.backgroundColor =
-                                  "rgba(243, 244, 246, 0.8)";
-                              }}
-                              onMouseLeave={(e) => {
-                                e.target.style.color = "#6b7280";
-                                e.target.style.backgroundColor = "transparent";
-                              }}
-                            >
-                              {item.name}
-                            </a>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                          {section.name}
+                        </h3>
+                        {section.subItems && (
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "12px",
+                              flex: 1,
+                            }}
+                          >
+                            {section.subItems.map((item, itemIndex) => (
+                              <a
+                                key={itemIndex}
+                                href={item.href}
+                                style={{
+                                  color: "#6b7280",
+                                  textDecoration: "none",
+                                  fontSize: "14px",
+                                  transition: "all 0.2s ease",
+                                  padding: "8px 12px",
+                                  borderRadius: "4px",
+                                  backgroundColor: "transparent",
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.target.style.color = "#111827";
+                                  e.target.style.backgroundColor =
+                                    "rgba(243, 244, 246, 0.8)";
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.target.style.color = "#6b7280";
+                                  e.target.style.backgroundColor =
+                                    "transparent";
+                                }}
+                              >
+                                {item.name}
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Featured cards will now take full height */}
