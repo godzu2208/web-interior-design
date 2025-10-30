@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ChevronDown } from "lucide-react";
-
+import "./Header.css";
 const MenuDesktop = ({ menuData, windowWidth }) => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const dropdownRef = useRef(null);
@@ -50,8 +49,8 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
     zIndex: 999,
     opacity: isVisible ? 1 : 0,
     visibility: isVisible ? "visible" : "hidden",
-    transform: isVisible ? "translateY(0)" : "translateY(-10px)",
-    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    transform: `translateY(${isVisible ? "0" : "-20px"})`, // Increased distance
+    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)", // Smoother easing
     pointerEvents: isVisible ? "auto" : "none",
     overflowY: "auto",
   });
@@ -88,7 +87,6 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
                 gap: "4px",
                 background: "none",
                 border: "none",
-                color: activeDropdown === index ? "#111827" : "#374151",
                 fontWeight: "700",
                 fontSize: "14px",
                 cursor: "pointer",
@@ -96,27 +94,9 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
                 letterSpacing: "10%",
                 padding: 0,
               }}
+              className="menu-button-text"
             >
               {menu.title}
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "14px",
-                  height: "14px",
-                }}
-              >
-                <ChevronDown
-                  size={14}
-                  style={{
-                    transform:
-                      activeDropdown === index ? "rotate(180deg)" : "rotate(0)",
-                    transition: "transform 0.3s ease",
-                    display: "block",
-                  }}
-                />
-              </span>
             </button>
 
             {/* Animated underline */}

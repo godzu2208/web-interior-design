@@ -1,3 +1,88 @@
+.header-wrapper {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-wrapper header {
+  background-color: transparent;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-wrapper.scrolled header,
+.header-wrapper:hover header {
+  background-color: rgba(243, 244, 246, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Text and icon colors */
+.header-wrapper a,
+.header-wrapper button,
+.header-wrapper .icon-button svg {
+  color: #fff;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-wrapper.scrolled a,
+.header-wrapper.scrolled button,
+.header-wrapper.scrolled .icon-button svg,
+.header-wrapper:hover a,
+.header-wrapper:hover button,
+.header-wrapper:hover .icon-button svg {
+  color: #111827;
+}
+
+/* Modify these classes */
+.header-wrapper.scrolled,
+.header-wrapper:hover {
+  background-color: rgba(243, 244, 246, 0.5); /* Add initial transparency */
+}
+
+.header-wrapper.scrolled header,
+.header-wrapper:hover header {
+  background-color: rgba(243, 244, 246, 0.45); /* Slightly less opaque */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Remove direct color important flags */
+.header-wrapper a,
+.header-wrapper button {
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.header-wrapper.scrolled a,
+.header-wrapper.scrolled button,
+.header-wrapper:hover a,
+.header-wrapper:hover button {
+  color: #111827;
+}
+
+.header-wrapper .lucide {
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.header-wrapper.scrolled .lucide,
+.header-wrapper:hover .lucide {
+  color: #6b7280;
+}
+
+.header-wrapper .icon-button svg {
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.header-wrapper.scrolled .icon-button svg,
+.header-wrapper:hover .icon-button svg {
+  color: #111827;
+}
+
 .left-btn {
   color: #374151;
   font-weight: 700;
@@ -75,4 +160,35 @@
   font-size: 12px;
   color: #111827;
   font-weight: 600;
+}
+
+.icon-button:hover {
+  opacity: 0.6;
+}
+
+/* Menu button colors only for main header state */
+.header-wrapper:not(.scrolled):not(:hover) .menu-button-text,
+.header-wrapper:not(.scrolled):not(:hover) .menu-icon {
+  color: #fff;
+}
+
+/* Remove color override for dropdown state since it has white background */
+.header-wrapper .dropdown-content .menu-button-text,
+.header-wrapper .dropdown-content .menu-icon {
+  color: #111827;
+}
+
+.dropdown-content {
+  animation: fadeInDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

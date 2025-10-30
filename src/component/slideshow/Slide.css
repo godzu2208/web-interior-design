@@ -1,0 +1,195 @@
+/* slide.css */
+.slide-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Đảm bảo hình ảnh full width và responsive */
+.each-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Giữ tỷ lệ hình ảnh */
+  display: block;
+}
+
+/* Tùy chỉnh dấu chấm chỉ thị */
+.react-slideshow-container .indicators {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.custom-indicator {
+  width: 24px !important;
+  height: 2px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  cursor: pointer;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: all 0.3s ease;
+}
+
+.custom-indicator.active {
+  background: #ffffff !important;
+  width: 32px !important;
+}
+
+/* Tùy chỉnh mũi tên điều hướng */
+.react-slideshow-container .nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 24px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-slideshow-container .nav.prev {
+  left: 20px;
+}
+
+.react-slideshow-container .nav.next {
+  right: 20px;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .react-slideshow-container .nav {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .react-slideshow-container .indicators li {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Slide full width responsive */
+.slide-container {
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* react-slideshow-image wrapper */
+.slide-container .react-slideshow-container,
+.slide-container .each-slide {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* The actual slide element using background-image */
+.each-slide > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover; /* scale to cover */
+  background-position: center; /* center the image */
+  background-repeat: no-repeat;
+  transition: background-image 0.4s ease, transform 0.3s ease;
+}
+
+/* Caption styling */
+.each-slide span {
+  color: #fff;
+  padding: 20px;
+  font-size: 90px;
+  border-radius: 4px;
+  line-height: 1;
+  max-width: 50%;
+  text-align: center;
+  background: transparent;
+  font-family: "Josefin Sans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .each-slide > div {
+    height: 50vh;
+    min-height: 220px;
+  }
+  .each-slide span {
+    font-size: 40px;
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 640px) {
+  .each-slide > div {
+    height: 38vh;
+    min-height: 180px;
+  }
+  .each-slide span {
+    font-size: 40px;
+    max-width: 80%;
+    padding: 6px 10px;
+  }
+}
+
+/* Prevent overflow */
+html,
+body,
+#root {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Enhance fade transition */
+.react-slideshow-fade-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.react-slideshow-fade-images-wrap > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.react-slideshow-fade-images-wrap > div.active {
+  opacity: 1;
+}
+
+/* Hide default nav */
+.react-slideshow-container .default-nav {
+  display: none;
+}

@@ -110,204 +110,188 @@ const Header = () => {
     zIndex: 1000,
     alignItems: "center",
     textAlign: "left",
-    backgroundColor: isScrolled
-      ? "rgba(243, 244, 246, 0.95)"
-      : "rgba(243, 244, 246, 0.8)",
-    backdropFilter: "blur(12px)",
-    WebkitBackdropFilter: "blur(12px)",
+    backgroundColor: "transparent",
     transition: "all 0.3s ease",
-    boxShadow: isScrolled ? "0 4px 20px rgba(0, 0, 0, 0.1)" : "none",
   });
 
   return (
     <>
-      <header style={getHeaderStyle()}>
-        <div
-          style={{
-            maxWidth: "1920px",
-            margin: windowWidth > 1024 ? "0px 40px" : "auto",
-            padding: windowWidth < 300 ? "0" : "16px",
-            // height: "120px",
-          }}
-        >
+      <div className={`header-wrapper ${isScrolled ? "scrolled" : ""}`}>
+        <header style={getHeaderStyle()}>
           <div
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              height: "80px",
+              width: "100%",
+              padding: windowWidth < 300 ? "0" : "16px",
+              boxSizing: "border-box",
             }}
           >
-            {/* Left Side: Mobile Menu Button OR Desktop Navigation */}
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "2rem",
+                justifyContent: "space-between",
+                height: "80px",
               }}
             >
-              {/* Mobile Menu Component */}
-              <MenuMobile
-                menuData={menuData}
-                isMobileMenuOpen={isMobileMenuOpen}
-                setIsMobileMenuOpen={setIsMobileMenuOpen}
-                windowWidth={windowWidth}
-              />
-
-              {/* Desktop Menu Component */}
-              <MenuDesktop menuData={menuData} windowWidth={windowWidth} />
-            </div>
-
-            {/* Center: Logo - Always centered */}
-            <div
-              style={{
-                position: "absolute",
-                left: "50%",
-                transform: "translateX(-50%)",
-              }}
-            >
-              <a
-                href="/"
+              {/* Left Side: Mobile Menu Button OR Desktop Navigation */}
+              <div
                 style={{
-                  fontSize: windowWidth > 1024 ? "32px" : "24px",
-                  fontWeight: "700",
-                  color: "#1f2937",
-                  textDecoration: "none",
-                  transition: "color 0.2s ease",
-                }}
-              >
-                BEE.STUDIO
-              </a>
-            </div>
-
-            {/* Right Side: Icons */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-              }}
-            >
-              {/* Contact Button - Desktop Only */}
-              <button
-                style={{
-                  display: windowWidth > 1024 ? "flex" : "none",
+                  display: "flex",
                   alignItems: "center",
-                  background: "none",
-                  border: "none",
-                  padding: "8px 12px",
-                  color: "#374151",
-                  fontWeight: "700",
-                  fontSize: "14px",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  letterSpacing: "10%",
-                  opacity: 1, // Add default opacity
+                  gap: "2rem",
                 }}
-                className="menu-button"
-                onClick={() => (window.location.href = "/contact")}
-                onMouseEnter={(e) => (e.target.style.opacity = "0.6")} // Add hover effect
-                onMouseLeave={(e) => (e.target.style.opacity = "1")} // Reset on mouse leave
               >
-                CONTACT
-              </button>
+                {/* Mobile Menu Component */}
+                <MenuMobile
+                  menuData={menuData}
+                  isMobileMenuOpen={isMobileMenuOpen}
+                  setIsMobileMenuOpen={setIsMobileMenuOpen}
+                  windowWidth={windowWidth}
+                />
 
-              {/* Login Button - Desktop Only */}
-              <button
-                style={{
-                  display: windowWidth > 1024 ? "flex" : "none",
-                  alignItems: "center",
-                  background: "none",
-                  border: "none",
-                  padding: "8px 12px",
-                  color: "#374151",
-                  fontWeight: "700",
-                  fontSize: "14px",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  letterSpacing: "10%",
-                  opacity: 1, // Add default opacity
-                }}
-                className="menu-button"
-                onClick={() => (window.location.href = "/login")}
-                onMouseEnter={(e) => (e.target.style.opacity = "0.6")} // Add hover effect
-                onMouseLeave={(e) => (e.target.style.opacity = "1")} // Reset on mouse leave
-              >
-                LOGIN
-              </button>
+                {/* Desktop Menu Component */}
+                <MenuDesktop menuData={menuData} windowWidth={windowWidth} />
+              </div>
 
-              {/* Search Button */}
-              <button
+              {/* Center: Logo - Always centered */}
+              <div
                 style={{
-                  background: "none",
-                  border: "none",
-                  padding: "8px",
-                  paddingRight: windowWidth > 1024 ? "8px" : "0px",
-                  cursor: "pointer",
-                  transition: "background-color 0.2s ease",
-                  position: "relative",
+                  position: "absolute",
+                  left: "50%",
+                  transform: "translateX(-50%)",
                 }}
-                onClick={() => setIsSearchOpen(true)}
-                onMouseEnter={(e) =>
-                  (e.target.style.backgroundColor = "rgba(141, 141, 141, 0.5)")
-                }
-                onMouseLeave={(e) =>
-                  (e.target.style.backgroundColor = "transparent")
-                }
               >
-                <Search size={20} color="#6b7280" />
-              </button>
-
-              {/* Cart Button */}
-              <button
-                style={{
-                  background: "none",
-                  border: "none",
-                  padding: "8px",
-                  cursor: "pointer",
-                  transition: "background-color 0.2s ease",
-                  position: "relative",
-                  display: windowWidth > 1024 ? "flex" : "none",
-                }}
-                onMouseEnter={(e) =>
-                  (e.target.style.backgroundColor = "rgba(141, 141, 141, 0.5)")
-                }
-                onMouseLeave={(e) =>
-                  (e.target.style.backgroundColor = "transparent")
-                }
-              >
-                <ShoppingCart size={20} color="#6b7280" />
-                <span
+                <a
+                  href="/"
                   style={{
-                    position: "absolute",
-                    top: "-4px",
-                    right: "-4px",
-                    width: "16px",
-                    height: "16px",
-                    backgroundColor: "#ef4444",
-                    color: "white",
-                    fontSize: "10px",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: "600",
+                    fontSize: windowWidth > 1024 ? "32px" : "24px",
+                    fontWeight: "700",
+                    textDecoration: "none",
+                    transition: "all 0.3s ease",
                   }}
                 >
-                  0
-                </span>
-              </button>
+                  BEE.STUDIO
+                </a>
+              </div>
+
+              {/* Right Side: Icons */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                }}
+              >
+                {/* Contact Button - Desktop Only */}
+                <button
+                  style={{
+                    display: windowWidth > 1024 ? "flex" : "none",
+                    alignItems: "center",
+                    background: "none",
+                    border: "none",
+                    padding: "8px 12px",
+                    fontWeight: "700",
+                    fontSize: "14px",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    letterSpacing: "10%",
+                    opacity: 1,
+                  }}
+                  className="menu-button"
+                  onClick={() => (window.location.href = "/contact")}
+                  onMouseEnter={(e) => (e.target.style.opacity = "0.6")} // Add hover effect
+                  onMouseLeave={(e) => (e.target.style.opacity = "1")} // Reset on mouse leave
+                >
+                  CONTACT
+                </button>
+
+                {/* Login Button - Desktop Only */}
+                <button
+                  style={{
+                    display: windowWidth > 1024 ? "flex" : "none",
+                    alignItems: "center",
+                    background: "none",
+                    border: "none",
+                    padding: "8px 12px",
+                    fontWeight: "700",
+                    fontSize: "14px",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    letterSpacing: "10%",
+                    opacity: 1,
+                  }}
+                  className="menu-button"
+                  onClick={() => (window.location.href = "/login")}
+                  onMouseEnter={(e) => (e.target.style.opacity = "0.6")} // Add hover effect
+                  onMouseLeave={(e) => (e.target.style.opacity = "1")} // Reset on mouse leave
+                >
+                  LOGIN
+                </button>
+
+                {/* Search Button */}
+                <button
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: "8px",
+                    paddingRight: windowWidth > 1024 ? "8px" : "0px",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                  }}
+                  onClick={() => setIsSearchOpen(true)}
+                  className="icon-button" // Add this class
+                >
+                  <Search size={20} />
+                </button>
+
+                {/* Cart Button */}
+                <button
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: "8px",
+
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    position: "relative",
+                    display: windowWidth > 1024 ? "flex" : "none",
+                  }}
+                  className="icon-button" // Add this class
+                >
+                  <ShoppingCart size={20} />
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "-4px",
+                      right: "-4px",
+                      width: "16px",
+                      height: "16px",
+                      backgroundColor: "#ef4444",
+                      color: "white",
+                      fontSize: "10px",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontWeight: "600",
+                    }}
+                  >
+                    0
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Search Overlay Component */}
-      <SearchOverlay
-        isSearchOpen={isSearchOpen}
-        setIsSearchOpen={setIsSearchOpen}
-        windowWidth={windowWidth}
-      />
+        {/* Search Overlay Component */}
+        <SearchOverlay
+          isSearchOpen={isSearchOpen}
+          setIsSearchOpen={setIsSearchOpen}
+          windowWidth={windowWidth}
+        />
+      </div>
     </>
   );
 };

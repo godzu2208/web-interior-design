@@ -65,6 +65,7 @@ const MenuMobile = ({
             background: "none",
             border: "none",
             padding: "8px",
+            paddingLeft: "0px",
             cursor: "pointer",
             transition: "background-color 0.2s ease",
             backgroundColor: "transparent",
@@ -112,7 +113,7 @@ const MenuMobile = ({
             maxWidth: "1280px",
             margin: "0 auto",
             padding: "16px",
-            height: "100%",
+            height: "90%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
@@ -273,7 +274,6 @@ const MenuMobile = ({
           {/* Contact & Login Section - Bottom */}
           <div
             style={{
-              borderTop: "1px solid rgba(0, 0, 0, 0.1)",
               marginTop: "auto",
               paddingTop: "16px",
             }}
