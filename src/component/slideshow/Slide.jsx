@@ -1,5 +1,5 @@
-import React from "react";
-import { Fade } from "react-slideshow-image"; // Change from Slide to Fade
+import React, { useState } from "react";
+import { Fade } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import "./Slide.css";
 
@@ -7,24 +7,9 @@ import bg1 from "../../assets/img/home/slide/bg1.jpg";
 import bg2 from "../../assets/img/home/slide/bg2.jpg";
 import bg3 from "../../assets/img/home/slide/bg3.jpg";
 
-const slideProperties = {
-  duration: 5000,
-  transitionDuration: 1000, // Increased for smoother fade
-  infinite: true,
-  arrows: false,
-  autoplay: true,
-  indicators: true, // Change to true to enable indicators
-  indicatorProps: {
-    className: "indicator",
-  },
-  scale: 1.0,
-  pauseOnHover: false,
-  onChange: (oldIndex, newIndex) => {
-    console.log(`Slide transition from ${oldIndex} to ${newIndex}`);
-  },
-};
-
 const SlideShow = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const slideImages = [
     {
       url: bg1,
@@ -39,6 +24,20 @@ const SlideShow = () => {
       caption: "Kate Nixon",
     },
   ];
+
+  const slideProperties = {
+    duration: 5000,
+    transitionDuration: 1000,
+    infinite: true,
+    arrows: false,
+    autoplay: true,
+    indicators: false,
+    scale: 1.0,
+    pauseOnHover: false,
+    onChange: (oldIndex, newIndex) => {
+      setCurrentSlide(newIndex);
+    },
+  };
 
   return (
     <div className="slide-container">
@@ -59,6 +58,18 @@ const SlideShow = () => {
           </div>
         ))}
       </Fade>
+
+      {/* Custom Carousel Indicators */}
+      <div className="carousel-indicators">
+        {slideImages.map((_, index) => (
+          <button
+            key={index}
+            className={`carousel-dot ${currentSlide === index ? "active" : ""}`}
+            onClick={() => setCurrentSlide(index)}
+            aria-label={`Slide ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };
