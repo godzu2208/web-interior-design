@@ -89,7 +89,7 @@ const MenuMobile = ({
         data-mobile-menu
         style={{
           position: "fixed",
-          top: windowWidth < 300 ? "80px" : "112px",
+          top: windowWidth < 1024 ? "80px" : "112px",
           left: 0,
           right: 0,
           bottom: 0,
@@ -110,17 +110,17 @@ const MenuMobile = ({
       >
         <div
           style={{
-            maxWidth: "1280px",
+            maxWidth: "100%",
             margin: "0 auto",
             padding: "16px",
-            height: "90%",
+            height: "calc(100vh - 112px)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
           }}
         >
           {/* Menu Items Section - Top */}
-          <div style={{ paddingTop: "16px" }}>
+          <div>
             {menuData.left.map((menu, index) => (
               <div
                 key={index}
@@ -153,6 +153,7 @@ const MenuMobile = ({
                   <span>{menu.title}</span>
                   <ChevronDown
                     size={14}
+                    className="mobile-menu-arrow"
                     style={{
                       transition: "transform 0.3s ease",
                       transform:
@@ -160,6 +161,7 @@ const MenuMobile = ({
                           ? "rotate(180deg)"
                           : "rotate(0)",
                       pointerEvents: "none",
+                      stroke: "#374151",
                     }}
                   />
                 </button>

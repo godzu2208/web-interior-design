@@ -84,14 +84,13 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
                 display: "flex",
                 alignItems: "center",
                 textAlign: "left",
-                gap: "4px",
                 background: "none",
                 border: "none",
-                fontWeight: "700",
-                fontSize: "14px",
+                fontWeight: "600",
+                fontSize: "var(--header-font-size-base)",
                 cursor: "pointer",
                 transition: "color 0.2s ease",
-                letterSpacing: "10%",
+                letterSpacing: "0.15em",
                 padding: 0,
               }}
               className="menu-button-text"
@@ -126,11 +125,11 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
             >
               <div
                 style={{
-                  maxWidth: "1920px",
+                  maxWidth: "100%",
                   margin: "0px 0px 0px 40px",
                   display: "flex",
                   gap: "24px",
-                  height: "100%", // Add this to make container full height
+                  height: "100%",
                 }}
               >
                 {/* Left side: Regular menu items */}
@@ -151,8 +150,8 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
                         "repeat(auto-fill, minmax(200px, 1fr))",
                       gap: "12px",
                       alignItems: "stretch",
-                      paddingTop: "12px", // Add padding here
-                      paddingBottom: "12px", // Add padding for symmetry
+                      paddingTop: "12px",
+                      paddingBottom: "12px",
                     }}
                   >
                     {menu.items.map((section, sectionIndex) => (

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Slide } from "react-slideshow-image";
-import SlideShow from "../component/slideshow/Slide";
+import SlideShow from "../component/layout/home/slideshow/Slide";
+import UpcommingEvent from "../component/layout/home/UpcommingEvent/UpcommingEvent";
 
 const Home = () => {
   // Remove padding-top from body styles
@@ -43,12 +44,12 @@ const Home = () => {
       }}
     >
       <SlideShow />
-
+      <UpcommingEvent />
       <div
         style={{
-          maxWidth: "1920px",
+          maxWidth: "100%",
           margin: "0 auto",
-          padding: "40px 1rem", // Adjust padding as needed
+          padding: " 0px 40px",
         }}
       >
         <div style={{ textAlign: "center" }}>
@@ -79,7 +80,6 @@ const Home = () => {
             reflect your style.
           </p>
 
-          {/* Demo sections */}
           <div
             style={{
               display: "grid",

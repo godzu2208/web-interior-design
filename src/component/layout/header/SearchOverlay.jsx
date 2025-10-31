@@ -10,7 +10,7 @@ const SearchOverlay = ({ isSearchOpen, setIsSearchOpen, windowWidth }) => {
     <div
       style={{
         position: "fixed",
-        top: windowWidth < 300 ? "80px" : "112px",
+        top: windowWidth >= 1024 ? "112px" : "80px",
         left: 0,
         right: 0,
         backgroundColor: "rgba(255, 255, 255, 0.95)",
@@ -26,9 +26,9 @@ const SearchOverlay = ({ isSearchOpen, setIsSearchOpen, windowWidth }) => {
     >
       <div
         style={{
-          maxWidth: "1280px",
+          maxWidth: "100%",
           margin: "0 auto",
-          padding: windowWidth <= 768 ? "16px" : "24px",
+          padding: windowWidth <= 1024 ? "8px" : "24px",
           width: "100%",
           position: "relative",
         }}
@@ -52,7 +52,7 @@ const SearchOverlay = ({ isSearchOpen, setIsSearchOpen, windowWidth }) => {
               fontSize: windowWidth <= 768 ? "16px" : "18px",
               color: "#374151",
               outline: "none",
-              padding: "8px 0",
+              padding: "16px 0px",
               width: "100%",
             }}
             autoFocus={isSearchOpen}

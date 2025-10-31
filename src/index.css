@@ -11,6 +11,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --header-font-size-base: clamp(14px, 1vw, 24px);
+  --header-font-size-small: clamp(12px, 0.625vw, 20px);
+  --header-font-size-large: clamp(16px, 0.83vw, 28px);
+  --header-logo-size: clamp(24px, 1.25vw, 40px);
 }
 
 a {

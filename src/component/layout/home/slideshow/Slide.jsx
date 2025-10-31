@@ -3,9 +3,10 @@ import { Fade } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import "./Slide.css";
 
-import bg1 from "../../assets/img/home/slide/bg1.jpg";
-import bg2 from "../../assets/img/home/slide/bg2.jpg";
-import bg3 from "../../assets/img/home/slide/bg3.jpg";
+// Fix import paths
+import bg1 from "../../../../assets/img/home/slide/bg1.jpg";
+import bg2 from "../../../../assets/img/home/slide/bg2.jpg";
+import bg3 from "../../../../assets/img/home/slide/bg3.jpg";
 
 const SlideShow = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

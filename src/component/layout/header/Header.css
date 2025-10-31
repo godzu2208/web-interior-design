@@ -36,20 +36,18 @@
   color: #111827;
 }
 
-/* Modify these classes */
 .header-wrapper.scrolled,
 .header-wrapper:hover {
-  background-color: rgba(243, 244, 246, 0.5); /* Add initial transparency */
+  background-color: rgba(243, 244, 246, 0.5);
 }
 
 .header-wrapper.scrolled header,
 .header-wrapper:hover header {
-  background-color: rgba(243, 244, 246, 0.45); /* Slightly less opaque */
+  background-color: rgba(243, 244, 246, 0.45);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Remove direct color important flags */
 .header-wrapper a,
 .header-wrapper button {
   color: #fff;
@@ -63,7 +61,8 @@
   color: #111827;
 }
 
-.header-wrapper .lucide {
+.header-wrapper svg,
+.lucide {
   color: #fff;
   transition: all 0.3s ease;
 }
@@ -87,7 +86,7 @@
   color: #374151;
   font-weight: 700;
   text-decoration: none;
-  font-size: 14px;
+  font-size: var(--header-font-size-base);
   padding: 6px 12px;
   transition: all 0.2s ease;
 }
@@ -97,20 +96,19 @@
   border-bottom: 1px solid #000;
 }
 
-/* Featured Menu Styles */
 .featured-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 100%; /* Make it full height */
+  grid-template-rows: 100%;
   gap: 12px;
   min-width: 600px;
-  height: 100%; /* Take full height of parent */
+  height: 100%;
 }
 
 .featured-card {
   text-decoration: none;
   display: block;
-  height: 100%; /* Take full height of grid cell */
+  height: 100%;
 }
 
 .featured-card-inner {
@@ -119,19 +117,19 @@
   transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  height: 100%; /* Take full height */
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .featured-image {
   width: 100%;
-  flex: 1; /* Take remaining space */
+  flex: 1;
   background-color: #e5e7eb;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 300px; /* Minimum height */
+  min-height: 300px;
 }
 
 .featured-placeholder {
@@ -144,35 +142,52 @@
 }
 
 .featured-title {
-  font-size: 16px;
+  font-size: var(--header-font-size-large);
   font-weight: 600;
   color: #111827;
   margin-bottom: 8px;
 }
 
 .featured-description {
-  font-size: 12px;
+  font-size: var(--header-font-size-small);
   color: #6b7280;
   margin-bottom: 12px;
 }
 
 .featured-read-more {
-  font-size: 12px;
+  font-size: var(--header-font-size-small);
   color: #111827;
   font-weight: 600;
 }
-
+.menu-button {
+  font-size: var(--header-font-size-base);
+  padding: 8px 12px;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  align-items: center;
+  background: none;
+  opacity: 1;
+  letter-spacing: 10%;
+}
+.icon-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
 .icon-button:hover {
   opacity: 0.6;
 }
 
-/* Menu button colors only for main header state */
 .header-wrapper:not(.scrolled):not(:hover) .menu-button-text,
 .header-wrapper:not(.scrolled):not(:hover) .menu-icon {
   color: #fff;
 }
 
-/* Remove color override for dropdown state since it has white background */
 .header-wrapper .dropdown-content .menu-button-text,
 .header-wrapper .dropdown-content .menu-icon {
   color: #111827;
@@ -191,4 +206,95 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Override Lucide SVG styles */
+.header-wrapper svg.lucide {
+  fill: none;
+  stroke: #fff !important;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: all 0.3s ease;
+}
+
+.header-wrapper.scrolled svg.lucide,
+.header-wrapper:hover svg.lucide {
+  stroke: #374151 !important;
+}
+
+.header-wrapper a,
+.header-wrapper button {
+  font-size: var(--header-font-size-base);
+}
+
+.left-btn {
+  font-size: var(--header-font-size-base);
+}
+
+.featured-title {
+  font-size: var(--header-font-size-large);
+}
+
+.featured-description {
+  font-size: var(--header-font-size-small);
+}
+
+.featured-read-more {
+  font-size: var(--header-font-size-small);
+}
+
+.header-wrapper .logo {
+  font-size: var(--header-logo-size);
+}
+
+@media screen and (min-width: 2000px) {
+  :root {
+    --header-font-size-base: clamp(16px, 0.83vw, 28px);
+    --header-font-size-small: clamp(14px, 0.73vw, 24px);
+    --header-font-size-large: clamp(18px, 0.94vw, 32px);
+    --header-logo-size: clamp(32px, 1.67vw, 48px);
+  }
+}
+
+/* Override icon colors when search is open */
+.header-wrapper[data-search-open="true"]
+  svg.lucide:not(.search-icon):not(.mobile-icon) {
+  stroke: #6b7280 !important;
+}
+
+/* Keep mobile menu arrows color */
+.mobile-menu svg.lucide {
+  stroke: #6b7280 !important;
+}
+
+/* Search overlay specific icons */
+.search-overlay svg.lucide {
+  stroke: #6b7280 !important;
+}
+
+.mobile-menu-arrow {
+  stroke: #374151 !important;
+}
+
+/* Prevent header hover/scroll state from affecting this specific arrow */
+.header-wrapper:hover .mobile-menu-arrow,
+.header-wrapper.scrolled .mobile-menu-arrow {
+  stroke: #374151 !important;
+}
+
+/* Override mobile menu arrow color */
+[data-mobile-menu] .mobile-menu-arrow {
+  stroke: #374151 !important;
+}
+
+/* Ensure color doesn't change on header hover/scroll */
+.header-wrapper:hover [data-mobile-menu] .mobile-menu-arrow,
+.header-wrapper.scrolled [data-mobile-menu] .mobile-menu-arrow {
+  stroke: #374151 !important;
+}
+
+/* Higher specificity override */
+.header-wrapper svg.lucide.mobile-menu-arrow {
+  stroke: #374151 !important;
 }

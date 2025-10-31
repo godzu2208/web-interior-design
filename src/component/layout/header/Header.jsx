@@ -121,7 +121,7 @@ const Header = () => {
           <div
             style={{
               width: "100%",
-              padding: windowWidth < 300 ? "0" : "16px",
+              padding: windowWidth < 1024 ? "0px 8px" : "16px 40px",
               boxSizing: "border-box",
             }}
           >
@@ -179,23 +179,13 @@ const Header = () => {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: "12px",
+                  gap: windowWidth > 1920 ? "1.5vw" : "24px",
                 }}
               >
                 {/* Contact Button - Desktop Only */}
                 <button
                   style={{
                     display: windowWidth > 1024 ? "flex" : "none",
-                    alignItems: "center",
-                    background: "none",
-                    border: "none",
-                    padding: "8px 12px",
-                    fontWeight: "700",
-                    fontSize: "14px",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    letterSpacing: "10%",
-                    opacity: 1,
                   }}
                   className="menu-button"
                   onClick={() => (window.location.href = "/contact")}
@@ -209,16 +199,6 @@ const Header = () => {
                 <button
                   style={{
                     display: windowWidth > 1024 ? "flex" : "none",
-                    alignItems: "center",
-                    background: "none",
-                    border: "none",
-                    padding: "8px 12px",
-                    fontWeight: "700",
-                    fontSize: "14px",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    letterSpacing: "10%",
-                    opacity: 1,
                   }}
                   className="menu-button"
                   onClick={() => (window.location.href = "/login")}
@@ -231,45 +211,42 @@ const Header = () => {
                 {/* Search Button */}
                 <button
                   style={{
-                    background: "none",
-                    border: "none",
-                    padding: "8px",
                     paddingRight: windowWidth > 1024 ? "8px" : "0px",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    position: "relative",
                   }}
                   onClick={() => setIsSearchOpen(true)}
-                  className="icon-button" // Add this class
+                  className="icon-button"
                 >
-                  <Search size={20} />
+                  <Search
+                    style={{
+                      height: windowWidth >= 1024 ? "1.2vw" : "24px",
+                      width: windowWidth >= 1024 ? "1.2vw" : "24px",
+                    }}
+                  />
                 </button>
 
                 {/* Cart Button */}
                 <button
                   style={{
-                    background: "none",
-                    border: "none",
-                    padding: "8px",
-
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    position: "relative",
                     display: windowWidth > 1024 ? "flex" : "none",
                   }}
-                  className="icon-button" // Add this class
+                  className="icon-button"
                 >
-                  <ShoppingCart size={20} />
+                  <ShoppingCart
+                    style={{
+                      height: windowWidth >= 1024 ? "1.2vw" : "24px",
+                      width: windowWidth >= 1024 ? "1.2vw" : "24px",
+                    }}
+                  />
                   <span
                     style={{
                       position: "absolute",
-                      top: "-4px",
-                      right: "-4px",
-                      width: "16px",
-                      height: "16px",
+                      top: windowWidth <= 1920 ? "0px" : "-12px",
+                      right: windowWidth <= 1920 ? "0px" : "-12px",
+                      width: "1vw",
+                      height: "1vw",
                       backgroundColor: "#ef4444",
                       color: "white",
-                      fontSize: "10px",
+                      fontSize: "14px",
                       borderRadius: "50%",
                       display: "flex",
                       alignItems: "center",
