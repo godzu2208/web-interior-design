@@ -169,7 +169,7 @@
   align-items: center;
   background: none;
   opacity: 1;
-  letter-spacing: 10%;
+  letter-spacing: 0.085em;
 }
 .icon-button {
   background: none;

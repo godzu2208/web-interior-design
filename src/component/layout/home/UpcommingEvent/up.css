@@ -1,5 +1,53 @@
 .upcomming-event {
-  padding: 64px;
+  padding: 0px 64px;
   width: 100%;
-  height: 624px;
+  height: 50vh;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
 }
+.container {
+  height: 100%;
+
+  position: relative;
+}
+.media-text {
+  display: flex;
+  gap: 2rem;
+  height: 100%;
+  width: 100%;
+}
+
+.media-text .media-wrapper-left {
+  display: flex;
+  width: 60%;
+  justify-content: right;
+}
+
+.wrapper-container {
+  display: flex;
+  max-width: 100%;
+  height: 100%;
+}
+.media-wrapper-left .wrapper-child {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.media-wrapper-left .wrapper-child:nth-child(1) {
+  /* position: relative; */
+  z-index: 1;
+}
+.media-wrapper-left .wrapper-child:nth-child(2) {
+  z-index: 2;
+}
+.media-text .media-wrapper-right {
+  display: flex;
+  width: 40%;
+  position: relative; /* Add this */
+  z-index: 1;
+  background: #ccc;
+}
+
+
+

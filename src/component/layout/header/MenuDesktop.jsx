@@ -90,7 +90,7 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
                 fontSize: "var(--header-font-size-base)",
                 cursor: "pointer",
                 transition: "color 0.2s ease",
-                letterSpacing: "0.15em",
+                letterSpacing: "0.085em",
                 padding: 0,
               }}
               className="menu-button-text"

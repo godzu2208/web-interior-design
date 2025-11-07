@@ -218,8 +218,8 @@ const Header = () => {
                 >
                   <Search
                     style={{
-                      height: windowWidth >= 1024 ? "1.2vw" : "24px",
-                      width: windowWidth >= 1024 ? "1.2vw" : "24px",
+                      height: windowWidth >= 1024 ? "1.5vw" : "24px",
+                      width: windowWidth >= 1024 ? "1.5vw" : "24px",
                     }}
                   />
                 </button>
