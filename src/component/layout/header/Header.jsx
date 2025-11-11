@@ -17,9 +17,8 @@ const Header = () => {
     typeof window !== "undefined" ? window.innerWidth : 1200
   );
 
-  // Fetch menu data
   useEffect(() => {
-    console.log("API URL:", import.meta.env.VITE_API_URL);
+    // console.log("API URL:", import.meta.env.VITE_API_URL);
 
     const fetchMenuData = async () => {
       try {
@@ -35,7 +34,7 @@ const Header = () => {
         );
 
         if (response.data && response.data.success) {
-          console.log("Menu data received:", response.data);
+          console.log("Menu data received!", response.data.data);
 
           const transformedData = {
             left: response.data.data
@@ -70,7 +69,7 @@ const Header = () => {
               })),
           };
 
-          console.log("Transformed data:", transformedData);
+          // console.log("Transformed data:", transformedData);
           setMenuData(transformedData);
         }
       } catch (err) {
@@ -84,7 +83,6 @@ const Header = () => {
     fetchMenuData();
   }, []);
 
-  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -93,7 +91,6 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Handle scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
@@ -189,8 +186,8 @@ const Header = () => {
                   }}
                   className="menu-button"
                   onClick={() => (window.location.href = "/contact")}
-                  onMouseEnter={(e) => (e.target.style.opacity = "0.6")} // Add hover effect
-                  onMouseLeave={(e) => (e.target.style.opacity = "1")} // Reset on mouse leave
+                  onMouseEnter={(e) => (e.target.style.opacity = "0.6")}
+                  onMouseLeave={(e) => (e.target.style.opacity = "1")}
                 >
                   CONTACT
                 </button>
