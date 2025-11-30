@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Header.css";
+
 const MenuDesktop = ({ menuData, windowWidth }) => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const dropdownRef = useRef(null);
@@ -37,11 +38,12 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
 
   const getDropdownStyle = (isVisible) => ({
     position: "fixed",
-    top: "112px",
+    // top: "96px",
+    top: windowWidth < 1025 ? "80px" : "5vw",
     left: 0,
     right: 0,
     maxHeight: "calc(100vh - 80px)",
-    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    backgroundColor: "rgba(255, 255, 255, 1)",
     backdropFilter: "blur(12px)",
     WebkitBackdropFilter: "blur(12px)",
     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
@@ -49,8 +51,8 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
     zIndex: 999,
     opacity: isVisible ? 1 : 0,
     visibility: isVisible ? "visible" : "hidden",
-    transform: `translateY(${isVisible ? "0" : "-20px"})`, // Increased distance
-    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)", // Smoother easing
+    transform: `translateY(${isVisible ? "0px" : "0px"})`,
+    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
     pointerEvents: isVisible ? "auto" : "none",
     overflowY: "auto",
   });
@@ -61,6 +63,7 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
         display: windowWidth > 1024 ? "flex" : "none",
         alignItems: "left",
         gap: "2rem",
+        height: "100%",
       }}
     >
       {menuData.left.map((menu, index) => (
@@ -68,6 +71,7 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
           key={index}
           style={{
             position: "relative",
+            height: "100%",
           }}
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={handleMouseLeave}
@@ -76,11 +80,13 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
             style={{
               padding: "8px 12px",
               position: "relative",
+              height: "100%",
             }}
             className="menu-button"
           >
             <button
               style={{
+                height: "100%",
                 display: "flex",
                 alignItems: "center",
                 textAlign: "left",
@@ -105,7 +111,7 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
                 bottom: "0",
                 left: "12px",
                 right: "12px",
-                height: "2px",
+                height: "3px",
                 backgroundColor: "#000000",
                 transform: activeDropdown === index ? "scaleX(1)" : "scaleX(0)",
                 transformOrigin: "left",
@@ -137,7 +143,7 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
                   style={{
                     flex: 1,
                     display: "flex",
-                    alignItems: index === 1 ? "flex-start" : "center", // Center container except for Shop
+                    alignItems: index === 1 ? "flex-start" : "center",
                     height: "100%",
                   }}
                 >
@@ -159,10 +165,10 @@ const MenuDesktop = ({ menuData, windowWidth }) => {
                         key={sectionIndex}
                         style={{
                           padding: "16px",
-                          backgroundColor: "rgba(255, 255, 255, 0.5)",
+
                           borderRadius: "8px",
                           transition: "all 0.2s ease",
-                          height: "100%", // Force same height
+                          height: "100%",
                           display: "flex",
                           flexDirection: "column",
                         }}

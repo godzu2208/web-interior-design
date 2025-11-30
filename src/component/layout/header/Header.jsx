@@ -102,8 +102,7 @@ const Header = () => {
   const getHeaderStyle = () => ({
     position: "fixed",
     top: 0,
-    left: 0,
-    right: 0,
+    width: "100%",
     zIndex: 1000,
     alignItems: "center",
     textAlign: "left",
@@ -118,7 +117,7 @@ const Header = () => {
           <div
             style={{
               width: "100%",
-              padding: windowWidth < 1024 ? "0px 8px" : "16px 40px",
+              padding: windowWidth < 1024 ? "0px 8px" : "0px 40px",
               boxSizing: "border-box",
             }}
           >
@@ -127,7 +126,8 @@ const Header = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                height: "80px",
+                height: windowWidth < 1025 ? "80px" : "5vw",
+                maxHeight: "112px",
               }}
             >
               {/* Left Side: Mobile Menu Button OR Desktop Navigation */}
@@ -136,6 +136,7 @@ const Header = () => {
                   display: "flex",
                   alignItems: "center",
                   gap: "2rem",
+                  height: "100%",
                 }}
               >
                 {/* Mobile Menu Component */}
@@ -167,7 +168,7 @@ const Header = () => {
                     transition: "all 0.3s ease",
                   }}
                 >
-                  BEE.STUDIO
+                  Bee.S
                 </a>
               </div>
 

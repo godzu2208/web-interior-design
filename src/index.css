@@ -12,10 +12,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --header-font-size-base: clamp(14px, 1vw, 24px);
+  /* --header-font-size-base: clamp(14px, 1vw, 24px);
   --header-font-size-small: clamp(12px, 0.625vw, 20px);
   --header-font-size-large: clamp(16px, 0.83vw, 28px);
-  --header-logo-size: clamp(24px, 1.25vw, 40px);
+  --header-logo-size: clamp(24px, 1.25vw, 40px); */
+  --header-font-size-base: clamp(10px, 0.7vw, 20px);
+  --header-font-size-small: clamp(8px, 0.6vw, 16px);
+  --header-font-size-large: clamp(14px, 0.8vw, 24px);
+  --header-logo-size: clamp(32px, 1.67vw, 48px);
 }
 
 a {

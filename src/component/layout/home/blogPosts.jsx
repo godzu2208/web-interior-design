@@ -1,24 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BlogPostList from "../common/BlogPostList";
+
 const BlogPosts = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="blog-posts" style={{ padding: "3rem", width: "100%" }}>
+    <div
+      className="blog-posts"
+      style={{
+        padding: windowWidth < 1024 ? "1.25rem" : "3rem ",
+        width: "100%",
+      }}
+    >
       <div
         className="container-lg"
         style={{
           display: "grid",
-          gap: "3rem",
-          gridAutoColumns: " minmax(0, 1fr)",
+          gap: windowWidth < 700 ? "1.25rem" : "3rem",
+          gridAutoColumns: "minmax(0, 1fr)",
         }}
       >
         <div
           className="title"
-          style={{ justifySelf: "center", textAlign: "center" }}
+          style={{
+            justifySelf: "center",
+            textAlign: "center",
+          }}
         >
           <div className="prose">
             <h2
               style={{
-                fontSize: "1.75rem",
+                fontSize: "2rem",
                 color: "#000",
                 fontFamily: "'Josefin Sans', sans-serif",
                 fontWeight: "700",
@@ -27,13 +48,12 @@ const BlogPosts = () => {
                 lineHeight: "1.4",
               }}
             >
-              THE LASTEST
+              THE LATEST
             </h2>
           </div>
         </div>
         <BlogPostList slug="creative-heaven,fine-print,feels-like-home" />
 
-        {/* VIEW ALL */}
         <div
           className="btn-view"
           style={{ justifySelf: "center", opacity: "0.76" }}
@@ -42,14 +62,14 @@ const BlogPosts = () => {
             href="/blog/in-the-press"
             style={{
               textTransform: "uppercase",
-              letterSpacing: "0.18em",
+              letterSpacing: "0.2em",
               color: "#ffffff",
-              fontSize: "1rem",
+              fontSize: windowWidth > 1920 ? "1rem" : "0.8rem",
               fontFamily: "'Figtree',sans-serif",
               fontWeight: "600",
               backgroundColor: "#000000",
               cursor: "pointer",
-              padding: "1rem 2rem",
+              padding: windowWidth > 1920 ? "0.8rem 2rem" : "1vw 3vw",
               alignItems: "center",
               display: "inline-block",
               borderRadius: "0px",

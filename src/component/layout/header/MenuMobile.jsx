@@ -89,7 +89,7 @@ const MenuMobile = ({
         data-mobile-menu
         style={{
           position: "fixed",
-          top: windowWidth < 1024 ? "80px" : "112px",
+          top: windowWidth < 1024 ? "80px" : "96px",
           left: 0,
           right: 0,
           bottom: 0,

@@ -10,7 +10,8 @@ const SearchOverlay = ({ isSearchOpen, setIsSearchOpen, windowWidth }) => {
     <div
       style={{
         position: "fixed",
-        top: windowWidth >= 1024 ? "112px" : "80px",
+        // top: windowWidth >= 1024 ? "96px" : "80px",
+        top: windowWidth >= 1024 ? "5vw" : "80px",
         left: 0,
         right: 0,
         backgroundColor: "rgba(255, 255, 255, 0.95)",
@@ -28,7 +29,7 @@ const SearchOverlay = ({ isSearchOpen, setIsSearchOpen, windowWidth }) => {
         style={{
           maxWidth: "100%",
           margin: "0 auto",
-          padding: windowWidth <= 1024 ? "8px" : "24px",
+          padding: windowWidth <= 1024 ? "8px" : "0.5rem 40px",
           width: "100%",
           position: "relative",
         }}

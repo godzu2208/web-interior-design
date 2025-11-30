@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const blogPostLists = [
   {
@@ -6,7 +6,7 @@ const blogPostLists = [
     meta: "marie claire",
     title: "Creative Haven",
     slugs: "creative-heaven",
-    img: "/assets/img/home/creative-heaven.jpg", // ✅ Thêm / ở đầu
+    img: "/assets/img/home/creative-heaven.jpg",
     alt: "Creative Haven",
   },
   {
@@ -25,7 +25,6 @@ const blogPostLists = [
     img: "/assets/img/home/feels-like-home.jpg",
     alt: "Feels Like Home",
   },
-  // ... (thêm / cho tất cả)
   {
     id: 4,
     meta: "Home Beautiful",
@@ -109,6 +108,21 @@ const blogPostLists = [
 ];
 
 const BlogPostList = ({ slug = "all" }) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [hoveredId, setHoveredId] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const getFilteredPosts = () => {
     if (slug === "all") {
       return blogPostLists;
@@ -121,46 +135,206 @@ const BlogPostList = ({ slug = "all" }) => {
   };
 
   const filteredPosts = getFilteredPosts();
+  const isMobile = windowWidth < 700;
 
+  // Auto slide mỗi 5 giây
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % filteredPosts.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isMobile, filteredPosts.length]);
+
+  // Xử lý swipe
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    setTouchEnd(e.changedTouches[0].clientX);
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const swipeDistance = touchStart - touchEnd;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        // Vuốt sang trái → tiếp theo
+        setCurrentSlide((prev) => (prev + 1) % filteredPosts.length);
+      } else {
+        // Vuốt sang phải → trước
+        setCurrentSlide((prev) =>
+          prev === 0 ? filteredPosts.length - 1 : prev - 1
+        );
+      }
+    }
+  };
+
+  // Render Slideshow cho Mobile
+  if (isMobile) {
+    return (
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          backgroundColor: "#f5f5f5",
+        }}
+      >
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "96vw",
+            overflow: "hidden",
+            touchAction: "pan-y",
+          }}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <img
+            src={filteredPosts[currentSlide]?.img}
+            alt={filteredPosts[currentSlide]?.alt}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+              opacity: 1,
+              transition: "opacity 0.5s ease-in-out",
+              userSelect: "none",
+            }}
+            draggable="false"
+          />
+        </div>
+
+        <div
+          className="mobile-slide-info"
+          style={{
+            padding: "1.5rem 0",
+            backgroundColor: "#fff",
+          }}
+        >
+          <div
+            className="card-info-meta"
+            style={{
+              fontSize: "0.875rem",
+              color: "#666",
+              marginBottom: "0.5rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+            }}
+          >
+            {filteredPosts[currentSlide]?.meta}
+          </div>
+          <h3
+            style={{
+              fontSize: "1.25rem",
+              fontWeight: "600",
+              color: "#000",
+              margin: "0.5rem 0 0 0",
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+            }}
+          >
+            {filteredPosts[currentSlide]?.title}
+          </h3>
+        </div>
+
+        <div
+          className="mobile-indicators"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "8px",
+            padding: "1.5rem 0",
+            backgroundColor: "#fff",
+          }}
+        >
+          {filteredPosts.map((_, index) => (
+            <div
+              key={index}
+              style={{
+                width: currentSlide === index ? "24px" : "16px",
+                height: "2px",
+                backgroundColor:
+                  currentSlide === index ? "#000" : "rgba(0, 0, 0, 0.3)",
+                transition: "all 0.3s ease",
+                cursor: "pointer",
+              }}
+              onClick={() => setCurrentSlide(index)}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Render Grid cho Desktop (3 columns)
   return (
     <div
       className="blog-posts-list"
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", // ✅ Responsive
-        gap: "3rem",
+        gridTemplateColumns:
+          "repeat(auto-fit, minmax(calc(33.333% - 4vw), 1fr))",
+        gap: "4vw",
         width: "100%",
       }}
     >
       {filteredPosts.map((post) => (
-        <div key={post.id} className="post-item">
+        <div
+          key={post.id}
+          className="post-item"
+          style={{ display: "flex", flexDirection: "column" }}
+        >
           <a
             href={`/blog/${post.slugs}`}
-            className="card-img"
-            style={{ display: "block", marginBottom: "1rem" }}
+            className="card-img-wrapper"
+            style={{
+              display: "block",
+              marginBottom: "0.5rem",
+              overflow: "hidden",
+              marginBottom: "1.5rem",
+              width: "100%",
+              height: "33vw",
+              flexShrink: 0,
+            }}
+            onMouseEnter={() => setHoveredId(post.id)}
+            onMouseLeave={() => setHoveredId(null)}
           >
             <img
               src={post.img}
               alt={post.alt}
               loading="lazy"
               onError={(e) => {
-                e.target.src = "/assets/img/placeholder.jpg"; // ✅ Fallback
+                e.target.src = "/assets/img/placeholder.jpg";
               }}
               style={{
                 width: "100%",
-                height: "auto",
+                height: "100%",
                 display: "block",
                 objectFit: "cover",
+                transition: "transform 0.5s ease",
+                transform: hoveredId === post.id ? "scale(1.05)" : "scale(1)",
               }}
             />
           </a>
-          <div className="card-info">
+          <div
+            className="card-info"
+            style={{ flex: 1, display: "flex", flexDirection: "column" }}
+          >
             <div
               className="card-info-meta"
               style={{
-                fontSize: "0.875rem",
+                fontSize: windowWidth > 1920 ? "0.8rem" : "0.4rem",
                 color: "#666",
-                marginBottom: "0.5rem",
+                fontWeight: "700",
+                marginBottom: "0.8rem",
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
               }}
@@ -172,13 +346,18 @@ const BlogPostList = ({ slug = "all" }) => {
                 href={`/blog/${post.slugs}`}
                 className="card-info-des"
                 style={{
-                  fontSize: "1.25rem",
-                  fontWeight: "600",
+                  fontSize: windowWidth > 1920 ? "1.25rem" : "0.8rem",
+                  fontWeight: "700",
                   color: "#000",
                   textDecoration: "none",
                   textTransform: "uppercase",
-                  letterSpacing: "0.05em",
+                  letterSpacing: "0.185em",
+                  transition: "color 0.3s ease",
+                  cursor: "pointer",
+                  display: "inline-block",
                 }}
+                onMouseEnter={(e) => (e.target.style.color = "#666")}
+                onMouseLeave={(e) => (e.target.style.color = "#000")}
               >
                 {post.title}
               </a>

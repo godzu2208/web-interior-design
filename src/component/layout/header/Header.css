@@ -250,10 +250,14 @@
 
 @media screen and (min-width: 2000px) {
   :root {
-    --header-font-size-base: clamp(16px, 0.83vw, 28px);
-    --header-font-size-small: clamp(14px, 0.73vw, 24px);
-    --header-font-size-large: clamp(18px, 0.94vw, 32px);
-    --header-logo-size: clamp(32px, 1.67vw, 48px);
+    /* --header-font-size-base: clamp(10px, 0.7vw, 20px);
+    --header-font-size-small: clamp(8px, 0.6vw, 16px);
+    --header-font-size-large: clamp(14px, 0.8vw, 24px);
+    --header-logo-size: clamp(32px, 1.67vw, 48px); */
+    --header-font-size-base: clamp(14px, 1vw, 24px);
+    --header-font-size-small: clamp(12px, 0.625vw, 20px);
+    --header-font-size-large: clamp(16px, 0.83vw, 28px);
+    --header-logo-size: clamp(24px, 1.25vw, 40px);
   }
 }
 
