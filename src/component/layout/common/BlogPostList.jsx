@@ -331,7 +331,7 @@ const BlogPostList = ({ slug = "all" }) => {
             <div
               className="card-info-meta"
               style={{
-                fontSize: windowWidth > 1920 ? "0.8rem" : "0.4rem",
+                fontSize: windowWidth > 1920 ? "1rem" : "0.8rem",
                 color: "#666",
                 fontWeight: "700",
                 marginBottom: "0.8rem",
@@ -346,7 +346,7 @@ const BlogPostList = ({ slug = "all" }) => {
                 href={`/blog/${post.slugs}`}
                 className="card-info-des"
                 style={{
-                  fontSize: windowWidth > 1920 ? "1.25rem" : "0.8rem",
+                  fontSize: windowWidth > 1920 ? "1.5rem" : "1.2rem",
                   fontWeight: "700",
                   color: "#000",
                   textDecoration: "none",

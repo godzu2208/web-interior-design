@@ -5,6 +5,7 @@ import UpcommingEvent from "../component/layout/home/UpcommingEvent/UpcommingEve
 import CollectionListWraps from "../component/layout/home/collection/collection";
 import RichText from "../component/layout/home/richText";
 import BlogPosts from "../component/layout/home/blogPosts";
+import AboutSmall from "../component/layout/home/About";
 
 const Home = () => {
   const windowWidth = window.innerWidth;
@@ -54,6 +55,7 @@ const Home = () => {
       <CollectionListWraps slugs={["product-design", "in-the-press"]} />
       <CollectionListWraps slugs={["our-team", "about"]} />
       <BlogPosts />
+      <AboutSmall />
     </main>
   );
 };
