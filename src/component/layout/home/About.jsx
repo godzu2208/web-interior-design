@@ -1,35 +1,176 @@
 import React from "react";
-import aboutImg from "../../../assets/img/home/about.jpg";
+import { useState, useEffect } from "react";
+import aboutImg from "/assets/img/home/about-small.jpg";
+
 const AboutSmall = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // ✅ Responsive grid columns
+  const gridColumns = windowWidth < 1024 ? "1fr" : "auto 30%";
+  const gridGap = windowWidth < 1024 ? "3rem" : "6rem";
+  const padding = windowWidth < 1024 ? "1.25rem" : "2rem";
+
   return (
     <div className="about-small" style={{ padding: "1.25rem", width: "100%" }}>
-      <div className="about-small-pdlr">
-        <div className="container-md">
-          <div className="container-md-left">
+      <div
+        className="about-small-pdlr"
+        style={{
+          maxWidth: "80%",
+          margin: "0 auto",
+        }}
+      >
+        <div
+          className="container-md"
+          style={{
+            display: "grid",
+            gridTemplateColumns: gridColumns,
+            gap: gridGap,
+          }}
+        >
+          {/* Left: Image */}
+          <div
+            className="container-md-left"
+            style={{
+              maxWidth: windowWidth < 1024 ? "100%" : "auto",
+            }}
+          >
             <div className="align-seft-item">
-              <img style={{ width: "100%" }} src={aboutImg} alt="about-img" />
+              <img
+                style={{ width: "100%", display: "block" }}
+                src={aboutImg}
+                alt="about-img"
+              />
             </div>
           </div>
-          <div className="container-md-right">
-            <div className="prose">
+
+          {/* Right: Content */}
+          <div
+            className="container-md-right"
+            style={{
+              alignSelf: windowWidth < 1024 ? "auto" : "center",
+            }}
+          >
+            <div
+              className="prose"
+              style={{
+                display: "grid",
+                gap: windowWidth > 1920 ? "2rem" : "1.4vw",
+              }}
+            >
               <div className="title">
-                <h6>About</h6>
+                <h6
+                  style={{
+                    fontSize: "0.85rem",
+                    color: "#000",
+                    fontFamily: "'Josefin Sans', sans-serif",
+                    fontWeight: "700",
+                    letterSpacing: "4px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  About
+                </h6>
               </div>
-              <div className="name-brand">KATE NIXON</div>
-              <div className="text-des">
-                <p>
-                  With a career in interiors, food styling and writing spanning
-                  two decades, and a fifteen year tenure as Houses Editor and
-                  Interiors Editor at Australian House & Garden magazine, Kate
-                  is the founder and director of her eponymous design studio and
-                  iconic home boutique.
-                  <br />A summer holiday to Italy in 2006 was the beginning of
-                  an enduring love affair with Busatti – the eight generation
-                  Italian artisan fabric house in Anghiari, Tuscany with Kate
-                  opening the flagship Australian boutique in Transvaal Avenue,
-                  Double Bay in 2007. She champions the brand today through her
-                  store, custom soft furnishings and award-winning interiors.
+
+              <div className="name-brand">
+                <p
+                  style={{
+                    fontSize: windowWidth < 1024 ? "1.25rem" : "1.5rem",
+                    color: "#000",
+                    fontFamily: "'Josefin Sans', sans-serif",
+                    lineHeight: "1.5",
+                    fontWeight: "700",
+                    letterSpacing: "4px",
+                    textTransform: "uppercase",
+                    margin: 0,
+                  }}
+                >
+                  KATE NIXON
                 </p>
+              </div>
+
+              <div className="text-des">
+                <p
+                  style={{
+                    fontSize: "1rem",
+                    color: "#000",
+                    fontFamily: "Figtree, sans-serif",
+                    lineHeight: "1.6",
+                    opacity: "0.8",
+                    fontWeight: "400",
+                    margin: 0,
+                  }}
+                >
+                  Kate Nixon is an Australian designer, stylist and
+                  long-standing interiors editor of Australian House & Garden
+                  magazine.
+                </p>
+              </div>
+
+              <div className="text-des">
+                <p
+                  style={{
+                    fontSize: "1rem",
+                    color: "#000",
+                    fontFamily: "Figtree, sans-serif",
+                    lineHeight: "1.6",
+                    opacity: "0.8",
+                    fontWeight: "400",
+                    margin: 0,
+                  }}
+                >
+                  Our full-service, multi-award winning interior design studio
+                  creates dream homes with decorating and styling through to
+                  large-scale renovations and new build designs.
+                </p>
+              </div>
+
+              <div className="text-des">
+                <p
+                  style={{
+                    fontSize: "1rem",
+                    color: "#000",
+                    fontFamily: "Figtree, sans-serif",
+                    lineHeight: "1.6",
+                    opacity: "0.8",
+                    fontWeight: "400",
+                    margin: 0,
+                  }}
+                >
+                  Our iconic homewares boutique offers a curated collection of
+                  our latest ideas, custom made products and hand-picked finds.
+                  We champion local and international brands, makers and
+                  artists.
+                </p>
+              </div>
+
+              <div className="button-group">
+                <a
+                  className="link"
+                  href="/about"
+                  style={{
+                    color: "#000",
+                    textDecoration: "none",
+                    fontSize: "1rem",
+                    fontWeight: "600",
+                    borderBottom: "1px solid #000",
+                    paddingBottom: "0.25rem",
+                    display: "inline-block",
+                  }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Read more
+                </a>
               </div>
             </div>
           </div>
