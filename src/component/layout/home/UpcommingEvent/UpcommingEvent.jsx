@@ -41,9 +41,9 @@ const UpcommingEvent = () => {
                     </p>
                   </div>
                 </div>
-                <div class="button-group">
+                <div className="button-group">
                   <a
-                    class="link"
+                    className="link"
                     href="https://www.trybooking.com/events/landing/1483325"
                     target="_blank"
                   >

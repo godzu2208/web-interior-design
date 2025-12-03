@@ -7,7 +7,7 @@ const AboutSmall = () => {
         <div className="container-md">
           <div className="container-md-left">
             <div className="align-seft-item">
-              <img src={aboutImg} alt="about-img" />
+              <img style={{ width: "100%" }} src={aboutImg} alt="about-img" />
             </div>
           </div>
           <div className="container-md-right">
@@ -23,8 +23,7 @@ const AboutSmall = () => {
                   Interiors Editor at Australian House & Garden magazine, Kate
                   is the founder and director of her eponymous design studio and
                   iconic home boutique.
-                                  <br />
-                                  A summer holiday to Italy in 2006 was the beginning of
+                  <br />A summer holiday to Italy in 2006 was the beginning of
                   an enduring love affair with Busatti – the eight generation
                   Italian artisan fabric house in Anghiari, Tuscany with Kate
                   opening the flagship Australian boutique in Transvaal Avenue,
