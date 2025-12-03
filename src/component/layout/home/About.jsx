@@ -2,7 +2,7 @@ import React from "react";
 import aboutImg from "../../../assets/img/home/about.jpg";
 const AboutSmall = () => {
   return (
-    <div className="about-small">
+    <div className="about-small" style={{ padding: "1.25rem", width: "100%" }}>
       <div className="about-small-pdlr">
         <div className="container-md">
           <div className="container-md-left">
