@@ -22,15 +22,15 @@ const AboutSmall = () => {
     <div
       className="about-small"
       style={{
-        padding: windowWidth < 1921 ? "1.25rem" : "3rem",
-        paddingTop: "6rem",
+        padding: windowWidth < 1025 ? "1.25rem" : "3rem",
+        paddingTop: "4rem",
         width: "100%",
       }}
     >
       <div
         className="about-small-pdlr"
         style={{
-          maxWidth: "70%",
+          maxWidth: windowWidth < 1600 ? "80%" : "70%",
           margin: "0 auto",
         }}
       >
@@ -47,9 +47,10 @@ const AboutSmall = () => {
             className="container-md-left"
             style={{
               maxWidth: windowWidth < 1024 ? "100%" : "auto",
+              alignSelf: "center",
             }}
           >
-            <div className="align-seft-item">
+            <div className="align-seft-item" style={{ alignSelf: "center" }}>
               <img
                 style={{ width: "100%", display: "block" }}
                 src={aboutImg}
