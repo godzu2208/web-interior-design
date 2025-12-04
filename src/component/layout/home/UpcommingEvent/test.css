@@ -104,9 +104,9 @@
 }
 
 .button-group a {
-  background: linear-gradient(to right, currentColor, currentColor) 0
-    min(100%, 1.2lh) / 100% 2px no-repeat;
-  padding-bottom: 4px;
+  /* background: linear-gradient(to right, currentColor, currentColor) 0
+    min(100%, 1.2lh) / 100% 1px no-repeat; */
+  padding-bottom: 2px;
   opacity: 0.8;
 }
 /* Responsive */

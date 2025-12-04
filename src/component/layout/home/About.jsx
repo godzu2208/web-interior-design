@@ -14,17 +14,23 @@ const AboutSmall = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ✅ Responsive grid columns
   const gridColumns = windowWidth < 1024 ? "1fr" : "auto 30%";
-  const gridGap = windowWidth < 1024 ? "3rem" : "6rem";
+  const gridGap = windowWidth < 1600 ? "3rem" : "6rem";
   const padding = windowWidth < 1024 ? "1.25rem" : "2rem";
 
   return (
-    <div className="about-small" style={{ padding: "1.25rem", width: "100%" }}>
+    <div
+      className="about-small"
+      style={{
+        padding: windowWidth < 1921 ? "1.25rem" : "3rem",
+        paddingTop: "6rem",
+        width: "100%",
+      }}
+    >
       <div
         className="about-small-pdlr"
         style={{
-          maxWidth: "80%",
+          maxWidth: "70%",
           margin: "0 auto",
         }}
       >
