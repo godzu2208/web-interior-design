@@ -5,8 +5,9 @@ import UpcommingEvent from "../component/layout/home/UpcommingEvent/UpcommingEve
 import CollectionListWraps from "../component/layout/home/collection/collection";
 import RichText from "../component/layout/home/richText";
 import BlogPosts from "../component/layout/home/blogPosts";
-import AboutSmall from "../component/layout/home/About";
-
+import AboutSmall from "../component/layout/home/AboutSmall";
+import StoreSmall from "../component/layout/home/StoreSmall";
+import Footer from "../component/layout/footer/Footer";
 const Home = () => {
   const windowWidth = window.innerWidth;
   useEffect(() => {
@@ -56,6 +57,8 @@ const Home = () => {
       <CollectionListWraps slugs={["our-team", "about"]} />
       <BlogPosts />
       <AboutSmall />
+      <StoreSmall />
+      <Footer />
     </main>
   );
 };

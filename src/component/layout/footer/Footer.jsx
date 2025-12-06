@@ -1,9 +1,10 @@
 import React from "react";
-
+import "./footer.css"
+import ListLogo from "./ListLogo";
 const Footer = () => {
   return (
-    <footer>
-      <p>© 2024 Interior Design. All rights reserved.</p>
+    <footer className="bg-black text-white">
+      <ListLogo />
     </footer>
   );
 };
