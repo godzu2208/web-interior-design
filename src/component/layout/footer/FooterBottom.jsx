@@ -72,7 +72,7 @@ const AccordionDisclosure = ({ title, children }) => {
   );
 };
 
-const FooterLinksBlock = ({ title, links }) => {
+const FooterLinksBlock = ({ title, links, style }) => {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" && window.innerWidth < 768
   );
@@ -87,7 +87,7 @@ const FooterLinksBlock = ({ title, links }) => {
   }, []);
 
   return (
-    <div>
+    <div style={style}>
       {!isMobile && (
         <div>
           <p
@@ -384,7 +384,11 @@ const FooterBottom = () => {
           {/* Links Columns */}
           <FooterLinksBlock title="About" links={aboutLinks} />
           <FooterLinksBlock title="Contact" links={contactLinks} />
-          <FooterLinksBlock title="Support" links={supportLinks} />
+          <FooterLinksBlock
+            style={{ marginBottom: "1rem" }}
+            title="Support"
+            links={supportLinks}
+          />
 
           {/* Newsletter */}
           <div>
@@ -395,13 +399,13 @@ const FooterBottom = () => {
 
                 color: "#FFFFFF",
                 fontFamily: "Josefin Sans, sans-serif",
-                padding: "1rem 0",
               }}
             >
               Join Us
             </p>
             <p
               style={{
+                padding: "1rem 0",
                 fontFamily: "Figtree, sans-serif",
                 color: "#FFFFFFA6",
                 fontSize: "0.9375rem",
