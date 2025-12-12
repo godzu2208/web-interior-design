@@ -52,9 +52,6 @@ const callProcedure = async (procedureName, params = []) => {
   }
 };
 
-// ============================================
-// API ENDPOINTS
-// ============================================
 
 /**
  * @route   GET /api/menu
