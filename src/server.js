@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import menuRoutes from "./routes/menuRoutes.js";
+import { getMenuItems } from "./routes/menu_api.js"; // Thêm dòng này
 import os from "os";
 
 function getLocalIp() {
@@ -16,8 +16,8 @@ function getLocalIp() {
   }
   return localIp;
 }
-const server = express();
 
+const server = express();
 const ipBe = getLocalIp();
 
 const corsOptions = {
@@ -35,7 +35,8 @@ const corsOptions = {
 server.use(cors(corsOptions));
 server.use(express.json());
 
-server.use("/api/menu", menuRoutes);
+// Dùng menu_api thay vì menuRoutes
+server.get("/api/menu", getMenuItems);
 
 server.get("/", (req, res) => {
   res.json({ message: "Server is running on port 3001!" });
