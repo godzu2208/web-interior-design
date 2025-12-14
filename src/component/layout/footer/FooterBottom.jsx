@@ -200,7 +200,7 @@ const FooterBottom = () => {
     setEmail("");
   };
 
-  return (
+  return ( 
     <footer
       style={{
         backgroundColor: "#424242",
