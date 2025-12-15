@@ -29,22 +29,22 @@ const PORT = process.env.PORT || 3001;
 // ============================================
 
 // const allowedOrigins = [
- 
+
 //   "http://localhost:5173",
 //   "http://localhost:3000",
 //   "http://127.0.0.1:5173",
 //   `http://${ipBe}:5173`,
 //   `http://${ipBe}:3001`,
- 
+
 //   process.env.FRONTEND_URL,
-  
+
 //   "https://web-interior-design-rose.vercel.app",
-// ].filter(Boolean); 
+// ].filter(Boolean);
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
   "http://127.0.0.1:5173",
-  "http://35.241.126.140:8080", // Thêm VM IP
+  "https://35.241.126.140:8080", // Thêm VM IP
   "https://web-interior-design-rose.vercel.app", // Thêm Vercel URL khi deploy
 ];
 const corsOptions = {
