@@ -28,19 +28,25 @@ const PORT = process.env.PORT || 3001;
 // CORS CONFIGURATION - PRODUCTION & LOCAL
 // ============================================
 
+// const allowedOrigins = [
+ 
+//   "http://localhost:5173",
+//   "http://localhost:3000",
+//   "http://127.0.0.1:5173",
+//   `http://${ipBe}:5173`,
+//   `http://${ipBe}:3001`,
+ 
+//   process.env.FRONTEND_URL,
+  
+//   "https://web-interior-design-rose.vercel.app",
+// ].filter(Boolean); 
 const allowedOrigins = [
-  // Local development
   "http://localhost:5173",
   "http://localhost:3000",
   "http://127.0.0.1:5173",
-  `http://${ipBe}:5173`,
-  `http://${ipBe}:3001`,
-  // Production (from env variable)
-  process.env.FRONTEND_URL,
-  // Vercel preview deployments
-  "https://web-interior-design-rose.vercel.app",
-].filter(Boolean); // Remove undefined values
-
+  "http://35.241.126.140:8080", // Thêm VM IP
+  "https://web-interior-design-rose.vercel.app", // Thêm Vercel URL khi deploy
+];
 const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (mobile apps, Postman, etc.)
