@@ -18,8 +18,6 @@ const Header = () => {
   );
 
   useEffect(() => {
-    // console.log("API URL:", import.meta.env.VITE_API_URL);
-
     const fetchMenuData = async () => {
       try {
         setIsLoading(true);
@@ -30,6 +28,7 @@ const Header = () => {
               Accept: "application/json",
               "Content-Type": "application/json",
             },
+            withCredentials: true,
           }
         );
 

@@ -3,9 +3,12 @@
 // File: fe/src/services/api.js
 // ============================================================================
 
+// const API_BASE_URL =
+//   import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:3000/api";
-
+  import.meta.env.MODE === "production"
+    ? "https://web-interior-design-897349070852.asia-east2.run.app/api"
+    : "http://localhost:3001/api";
 /**
  * Generic API call helper
  */
