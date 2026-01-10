@@ -3,8 +3,12 @@ import cors from "cors";
 import { getMenuItems } from "./routes/menu_api.js";
 import os from "os";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 function getLocalIp() {
   const nets = os.networkInterfaces();
@@ -27,35 +31,27 @@ const PORT = process.env.PORT || 3001;
 // ============================================
 // CORS CONFIGURATION - PRODUCTION & LOCAL
 // ============================================
-
-// const allowedOrigins = [
-
-//   "http://localhost:5173",
-//   "http://localhost:3000",
-//   "http://127.0.0.1:5173",
-//   `http://${ipBe}:5173`,
-//   `http://${ipBe}:3001`,
-
-//   process.env.FRONTEND_URL,
-
-//   "https://web-interior-design-rose.vercel.app",
-// ].filter(Boolean);
 const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:3000",
-  "http://127.0.0.1:5173",
-  "https://35.241.126.140:8080", // Thêm VM IP
-  "https://web-interior-design-rose.vercel.app", // Thêm Vercel URL khi deploy
-];
+  "http://localhost:5173", // ✅ Vite dev
+  "http://localhost:3000", // ✅ React dev
+  "http://127.0.0.1:5173", // ✅ Localhost alternative
+  `http://${ipBe}:5173`, // ✅ Network IP
+  `http://${ipBe}:3001`, // ✅ Backend network IP
+  "http://35.241.126.140:8080", // ⚠️ Nên dùng HTTP (không phải HTTPS nếu không có SSL)
+  "https://web-interior-design-rose.vercel.app",
+  "https://web-interior-design-897349070852.asia-east2.run.app",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (mobile apps, Postman, etc.)
+    // ✅ Allow requests with no origin (mobile apps, Postman, curl, etc.)
     if (!origin) return callback(null, true);
 
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      console.warn(`CORS blocked origin: ${origin}`);
+      console.warn(`❌ CORS blocked origin: ${origin}`);
       callback(new Error("Not allowed by CORS"));
     }
   },
@@ -66,12 +62,12 @@ const corsOptions = {
 };
 
 server.use(cors(corsOptions));
+
 server.use(express.json());
 
 // ============================================
 // HEALTH CHECK - REQUIRED FOR CLOUD RUN
 // ============================================
-
 server.get("/health", (req, res) => {
   res.status(200).json({
     status: "ok",
@@ -83,7 +79,6 @@ server.get("/health", (req, res) => {
 // ============================================
 // API ROUTES
 // ============================================
-
 server.get("/api/test", (req, res) => {
   res.json({
     message: "Backend is working!",
@@ -100,7 +95,6 @@ server.get("/", (req, res) => {
 // ============================================
 // ERROR HANDLING
 // ============================================
-
 server.use((err, req, res, next) => {
   console.error("Error:", err);
   res.status(500).json({
@@ -113,7 +107,6 @@ server.use((err, req, res, next) => {
 // ============================================
 // START SERVER
 // ============================================
-
 server.listen(PORT, "0.0.0.0", () => {
   console.log(`✅ Server is running on http://0.0.0.0:${PORT}`);
   console.log(`✅ Local access: http://localhost:${PORT}`);
